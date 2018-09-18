@@ -248,7 +248,7 @@ Webflow.push(function () {
     $('#submit-card-info').
 
 
-    const data = {
+    var data = {
       email: Cookies.get('email'),
       uid: Cookies.get('uid'),
       number: $('#card-number').val(),
