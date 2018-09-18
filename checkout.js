@@ -245,10 +245,11 @@ Webflow.push(function () {
         return window.location.replace(window.location.href + "?login")
 
     // Show loading state in button
-    $('#submit-card-info').
+    $('#submit-card-info').hide();
+    $('#submit-button-loading').show();
 
 
-    var data = {
+    const data = {
       email: Cookies.get('email'),
       uid: Cookies.get('uid'),
       number: $('#card-number').val(),
@@ -270,6 +271,9 @@ Webflow.push(function () {
       },
       error: (error) => {
         console.log({error})
+        // Show button again
+        $('#submit-card-info').show();
+        $('#submit-button-loading').hide();
       }
     });
   });
