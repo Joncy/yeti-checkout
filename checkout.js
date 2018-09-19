@@ -329,6 +329,20 @@ $('#card-number').keydown(function (event) {
             $('#inline-amex').hide();
           }
       }
+    } else {
+      inputValue = inputValue.slice(0, -1)
+      console.log("Input is now: " + inputValue)
+
+      if (inputValue.length < 2) {
+        switch (inputValue) {
+          case "4":
+            break;
+          default:
+            $('#inline-visa').hide();
+            $('#inline-mastercard').hide();
+            $('#inline-amex').hide();
+        }
+      }
     }
   }
 
