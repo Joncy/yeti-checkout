@@ -288,7 +288,7 @@ $('#card-number').keydown(function (event) {
   console.log("Key preseed: " + event.which)
   console.log("Value input is: " + $('#card-number').val())
 
-  var inputValue = $('#card-number').val() // Valor del input)
+  var inputValue = $('#card-number').val() // Valor del input
 
   if ((event.which < 48 || event.which > 57) && event.which != 8)
     event.preventDefault();
@@ -328,10 +328,17 @@ $('#card-number').keydown(function (event) {
             $('#inline-mastercard').hide();
             $('#inline-amex').hide();
           }
+          if (result.length == 5 || result.length == 9 || result.length == 13)
+            $('#card-number').val().concat(" ")
       }
     } else {
       inputValue = inputValue.slice(0, -1)
-      console.log("Input is now: " + inputValue)
+
+      if (inputValue.length == 5 || result.length == 9 || result.length == 13) {
+        $('#card-number').val() = $('#card-number').val().slice(0, -1)
+        inputValue = inputValue.slice(0, -1)
+      }
+
 
       if (inputValue.length < 2) {
         switch (inputValue) {
