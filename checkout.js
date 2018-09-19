@@ -324,8 +324,11 @@ $('#card-number').keydown(function (event) {
     }
   }
 
-  if (event.which == 8)
-    
+  if (event.which == 8 && $('#card-number').val().length < 2 && $('#card-number').val() != "4") {
+    $('#inline-visa').hide();
+    $('#inline-mastercard').hide();
+    $('#inline-amex').hide();
+  }
 })
 
 
