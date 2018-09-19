@@ -1,5 +1,6 @@
 var currentPlan = null;
-var currentCounty = null;
+var currentCountry = null;
+var realCountry = null;
 var loading = false;
 
 const config = {
@@ -181,6 +182,7 @@ $(document).ready(function () {
           $('#premium-monthly-eur').css("border-color", "#59cbe8");
         }
         currentCountry = "EU";
+        realCountry = response.country;
         break;
       case "GB":
         $('#container-loading').hide();
@@ -206,6 +208,7 @@ $(document).ready(function () {
           $('#premium-monthly-usd').css("border-color", "#59cbe8");
         }
         currentCountry = "US";
+        realCountry = response.country;
         break;
       default:
         $('#container-loading').hide();
@@ -219,6 +222,7 @@ $(document).ready(function () {
           $('#premium-monthly-usd').css("border-color", "#59cbe8");
         }
         currentCountry = "US";
+        realCountry = response.country;
     }
   }, "jsonp");
 });
@@ -308,7 +312,29 @@ $(document).ready(() => {
         $('#log-in-container').hide();
         $('#sign-up-container').hide();
         $('#payment-container').show();
-        setCookie(result.user.uid, result.user.email)
+        setCookie(result.user.uid, result.user.email, result.user.provider, result.user.name)
+
+        const data = {
+          email: Cookies.get('email'),
+          uid: Cookies.get('uid'),
+          provider: Cookies.get('provider'),
+          name: Cookies.get('name')
+        }
+
+        console.log(data)
+
+        $.ajax({
+          type: "POST",
+          url: 'https://netbeast-api-staging.now.sh/api/setuser',
+          data: data,
+          success: () => {
+            console.log('Success')
+          },
+          error: (error) => {
+            console.log({error})
+          }
+        });
+
       } else {
         if (Cookies.get('email') && Cookies.get('uid')) {
           $('#form-loading').hide();
@@ -338,7 +364,9 @@ $(document).ready(() => {
 })
 
 // Save a uid and email into a cookie
-function setCookie (uid, email) {
+function setCookie (uid, email, provider, name) {
   Cookies.set('uid', uid)
   Cookies.set('email', email)
+  Cookies.set('provider', provider)
+  Cookies.set('name', name)
 }
