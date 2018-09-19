@@ -286,6 +286,8 @@ Webflow.push(function () {
 /* Form validation */
 $('#card-number').keypress(function (event) {
   console.log("Key preseed: " + event.which)
+  console.log("Value input is: " + $('#card-number').val())
+
   if (event.which < 48 || event.which > 57)
     event.preventDefault();
   else if ($('#card-number').val().length <= 2) {
