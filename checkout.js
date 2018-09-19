@@ -290,27 +290,37 @@ $('#card-number').keypress(function (event) {
 
   if (event.which < 48 || event.which > 57)
     event.preventDefault();
-  else if ($('#card-number').val().length + 1 <= 2) {
+
+  if ($('#card-number').val().length < 3) {
     switch ($('#card-number').val()) {
-      case "4":
+      case '4':
+      case '41':
+      case '42':
+      case '43':
+      case '44':
+      case '45':
+      case '46':
+      case '47':
+      case '48':
+      case '49':
         $('#inline-visa').show();
         break;
-      case "34":
-      case "37":
-        $('#inline-amex').show();
-        break;
-      case "50":
-      case "51":
-      case "52":
-      case "53":
-      case "54":
-      case "55":
+      case '50':
+      case '51':
+      case '52':
+      case '53':
+      case '54':
+      case '55':
         $('#inline-mastercard').show();
+        break;
+      case '34':
+      case '37':
+        $('#inline-amex').show();
         break;
       default:
         $('#inline-visa').hide();
-        $('#inline-amex').hide();
         $('#inline-mastercard').hide();
+        $('#inline-amex').hide();
     }
   }
 })
