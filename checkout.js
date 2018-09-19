@@ -284,7 +284,11 @@ Webflow.push(function () {
 });
 
 /* Form validation */
-
+$('#card-number').keypress(function (event) {
+  console.log("Key preseed: " + event.which)
+  if (event.which < 48 || event.which > 57)
+    event.preventDefault();
+})
 
 
 /* Function declarations */
@@ -313,6 +317,7 @@ $(document).ready(() => {
         $('#sign-up-container').hide();
         $('#payment-container').show();
 
+        // Set user parameters in firebase
         setCookie(result.user.uid, result.user.email, result.credential.providerId, result.user.displayName)
 
         const data = {
@@ -321,8 +326,6 @@ $(document).ready(() => {
           provider: Cookies.get('provider'),
           name: Cookies.get('name')
         }
-
-        console.log(data)
 
         $.ajax({
           type: "POST",
