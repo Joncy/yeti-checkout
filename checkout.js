@@ -288,14 +288,50 @@ $('#card-number').keydown(function (event) {
   console.log("Key preseed: " + event.which)
   console.log("Value input is: " + $('#card-number').val())
 
+  const inputValue = $('#card-number').val() // Valor del input)
+
   if ((event.which < 48 || event.which > 57) && event.which != 8)
     event.preventDefault();
+  else {
+    if (event.which != 8) {
+      const pressedKey = event.key // Valor pulsado
+      const result = concat(inputValue, pressedKey)
 
-  const keyInput = $('#card-number').val() // Valor del input
+      switch (result) {
+        case '4':
+        case '41':
+        case '42':
+        case '43':
+        case '44':
+        case '45':
+        case '46':
+        case '47':
+        case '48':
+        case '49':
+          $('#inline-visa').show();
+          break;
+        case '50':
+        case '51':
+        case '52':
+        case '53':
+        case '54':
+        case '55':
+          $('#inline-mastercard').show();
+          break;
+        case '34':
+        case '37':
+          $('#inline-amex').show();
+          break;
+        default:
+          if (result.length < 3) {
+            $('#inline-visa').hide();
+            $('#inline-mastercard').hide();
+            $('#inline-amex').hide();
+          }
+      }
+    }
+  }
 
-  const keyPressed = event.keyCode // Valor pulsado
-  console.log("Keycode: " + event.keyCode + " - KeyName: " + event.key + " Char: " + event.char);
-  //const result = concat(keyInput, keyPressed)
 
   // if 4*** **** **** **** then visa
   // else if 5[0-5]** **** **** **** then mastercard
@@ -304,38 +340,7 @@ $('#card-number').keydown(function (event) {
 
 /*
   if (0 < $('#card-number').val().length < 3) {
-    switch ($('#card-number').val()) {
-      case '4':
-      case '41':
-      case '42':
-      case '43':
-      case '44':
-      case '45':
-      case '46':
-      case '47':
-      case '48':
-      case '49':
-        $('#inline-visa').show();
-        break;
-      case '50':
-      case '51':
-      case '52':
-      case '53':
-      case '54':
-      case '55':
-        $('#inline-mastercard').show();
-        break;
-      case '34':
-      case '37':
-        $('#inline-amex').show();
-        break;
-      case '5':
-        break;
-      default:
-        $('#inline-visa').hide();
-        $('#inline-mastercard').hide();
-        $('#inline-amex').hide();
-    }
+    
   }
 */
 
