@@ -290,7 +290,7 @@ $('#card-number').keypress(function (event) {
 
   if (event.which < 48 || event.which > 57)
     event.preventDefault();
-  else if ($('#card-number').val().length <= 2) {
+  else if ($('#card-number').val().length + 1 <= 2) {
     switch ($('#card-number').val()) {
       case "4":
         $('#inline-visa').show();
