@@ -291,7 +291,7 @@ $('#card-number').keydown(function (event) {
   if ((event.which < 48 || event.which > 57) && event.which != 8)
     event.preventDefault();
 
-  if ($('#card-number').val().length < 3) {
+  if (0 < $('#card-number').val().length < 3) {
     switch ($('#card-number').val()) {
       case '4':
       case '41':
@@ -324,12 +324,6 @@ $('#card-number').keydown(function (event) {
         $('#inline-mastercard').hide();
         $('#inline-amex').hide();
     }
-  }
-
-  if (event.which == 8 && $('#card-number').val().length < 2 && $('#card-number').val() != "4") {
-    $('#inline-visa').hide();
-    $('#inline-mastercard').hide();
-    $('#inline-amex').hide();
   }
 })
 
