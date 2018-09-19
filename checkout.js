@@ -295,7 +295,7 @@ $('#card-number').keydown(function (event) {
   else {
     if (event.which != 8) {
       const pressedKey = event.key // Valor pulsado
-      const result = concat(inputValue, pressedKey)
+      const result = inputValue.concat(pressedKey)
 
       switch (result) {
         case '4':
