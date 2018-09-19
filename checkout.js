@@ -284,15 +284,12 @@ Webflow.push(function () {
 });
 
 /* Form validation */
-$('#card-number').keypress(function (event) {
+$('#card-number').keydown(function (event) {
   console.log("Key preseed: " + event.which)
   console.log("Value input is: " + $('#card-number').val())
 
-  if (event.which < 48 || event.which > 57)
+  if ((event.which < 48 || event.which > 57) && event.which != 8)
     event.preventDefault();
-
-  if (event.which == 8)
-    console.log("Backspace")
 
   if ($('#card-number').val().length < 3) {
     switch ($('#card-number').val()) {
@@ -327,6 +324,8 @@ $('#card-number').keypress(function (event) {
     }
   }
 })
+
+
 
 
 /* Function declarations */
