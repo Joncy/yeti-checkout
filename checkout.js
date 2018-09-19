@@ -312,6 +312,9 @@ $(document).ready(() => {
         $('#log-in-container').hide();
         $('#sign-up-container').hide();
         $('#payment-container').show();
+
+        console.log(result.user)
+
         setCookie(result.user.uid, result.user.email, result.user.provider, result.user.name)
 
         const data = {
