@@ -288,6 +288,29 @@ $('#card-number').keypress(function (event) {
   console.log("Key preseed: " + event.which)
   if (event.which < 48 || event.which > 57)
     event.preventDefault();
+  else if ($('#card-number').val().length <= 2) {
+    switch ($('#card-number').val()) {
+      case "4":
+        $('#inline-visa').show();
+        break;
+      case "34":
+      case "37":
+        $('#inline-amex').show();
+        break;
+      case "50":
+      case "51":
+      case "52":
+      case "53":
+      case "54":
+      case "55":
+        $('#inline-mastercard').show();
+        break;
+      default:
+        $('#inline-visa').hide();
+        $('#inline-amex').hide();
+        $('#inline-mastercard').hide();
+    }
+  }
 })
 
 
@@ -327,17 +350,21 @@ $(document).ready(() => {
           name: Cookies.get('name')
         }
 
-        $.ajax({
-          type: "POST",
-          url: 'https://netbeast-api-staging.now.sh/api/setuser',
-          data: data,
-          success: () => {
-            console.log('Success')
-          },
-          error: (error) => {
-            console.log({error})
-          }
-        });
+        if (!result.additionalUserInfo.isNewUser) {
+          $.ajax({
+            type: "POST",
+            url: 'https://netbeast-api-staging.now.sh/api/setuser',
+            data: data,
+            success: () => {
+              console.log('Success')
+            },
+            error: (error) => {
+              console.log({error})
+            }
+          });
+        } else {
+          console.log("User already created")
+        }
 
       } else {
         if (Cookies.get('email') && Cookies.get('uid')) {
