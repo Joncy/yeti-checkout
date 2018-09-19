@@ -313,9 +313,7 @@ $(document).ready(() => {
         $('#sign-up-container').hide();
         $('#payment-container').show();
 
-        console.log(result)
-
-        setCookie(result.user.uid, result.user.email, result.user.provider, result.user.displayName)
+        setCookie(result.user.uid, result.user.email, result.credential.providerID, result.user.displayName)
 
         const data = {
           email: Cookies.get('email'),
