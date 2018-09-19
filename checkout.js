@@ -291,6 +291,9 @@ $('#card-number').keypress(function (event) {
   if (event.which < 48 || event.which > 57)
     event.preventDefault();
 
+  if (event.which == 8)
+    console.log("Backspace")
+
   if ($('#card-number').val().length < 3) {
     switch ($('#card-number').val()) {
       case '4':
