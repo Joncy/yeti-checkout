@@ -323,6 +323,9 @@ $('#card-number').keydown(function (event) {
         $('#inline-amex').hide();
     }
   }
+
+  if (event.which == 8)
+    
 })
 
 
