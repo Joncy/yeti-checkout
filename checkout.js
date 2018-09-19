@@ -323,6 +323,7 @@ $('#card-number').keydown(function (event) {
           $('#inline-amex').show();
           break;
         default:
+          console.log("Default case")
           if (result.length < 3) {
             $('#inline-visa').hide();
             $('#inline-mastercard').hide();
@@ -334,7 +335,7 @@ $('#card-number').keydown(function (event) {
     } else {
       inputValue = inputValue.slice(0, -1)
 
-      if (inputValue.length == 5 || result.length == 9 || result.length == 13) {
+      if (inputValue.length == 5 || inputValue.length == 9 || inputValue.length == 13) {
         $('#card-number').val() = $('#card-number').val().slice(0, -1)
         inputValue = inputValue.slice(0, -1)
       }
