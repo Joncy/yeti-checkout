@@ -288,7 +288,7 @@ $('#card-number').keydown(function (event) {
   console.log("Key preseed: " + event.which)
   console.log("Value input is: " + $('#card-number').val())
 
-  const inputValue = $('#card-number').val() // Valor del input)
+  var inputValue = $('#card-number').val() // Valor del input)
 
   if ((event.which < 48 || event.which > 57) && event.which != 8)
     event.preventDefault();
