@@ -317,6 +317,8 @@ $('#card-number').keydown(function (event) {
       case '37':
         $('#inline-amex').show();
         break;
+      case '5':
+        break;
       default:
         $('#inline-visa').hide();
         $('#inline-mastercard').hide();
