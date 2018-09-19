@@ -313,6 +313,12 @@ $(document).ready(() => {
         $('#sign-up-container').hide();
         $('#payment-container').show();
 
+        console.log(result)
+
+        console.log(result.credential)
+
+        console.log(result.credential.providerID)
+
         setCookie(result.user.uid, result.user.email, result.credential.providerID, result.user.displayName)
 
         const data = {
