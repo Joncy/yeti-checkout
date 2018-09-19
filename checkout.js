@@ -291,6 +291,18 @@ $('#card-number').keydown(function (event) {
   if ((event.which < 48 || event.which > 57) && event.which != 8)
     event.preventDefault();
 
+  const keyInput = $('#card-number').val() // Valor del input
+
+  const keyPressed = event.keyCode // Valor pulsado
+  console.log("Keycode: " + event.keyCode + " - KeyName: " + event.key + " Char: " + event.char);
+  //const result = concat(keyInput, keyPressed)
+
+  // if 4*** **** **** **** then visa
+  // else if 5[0-5]** **** **** **** then mastercard
+  // else if 3(4/7)** **** ****
+})
+
+/*
   if (0 < $('#card-number').val().length < 3) {
     switch ($('#card-number').val()) {
       case '4':
@@ -325,7 +337,7 @@ $('#card-number').keydown(function (event) {
         $('#inline-amex').hide();
     }
   }
-})
+*/
 
 
 
