@@ -2,6 +2,7 @@ var currentPlan = null;
 var currentCountry = null;
 var realCountry = null;
 var loading = false;
+var cardType = null;
 
 const config = {
   apiKey: 'AIzaSyDUaJFJOrjZuv9hiiLumV8gd7FhfWQhhu0',
@@ -309,6 +310,7 @@ $('#card-number').keydown(function (event) {
         case '48':
         case '49':
           $('#inline-visa').show();
+          cardType = "visa"
           break;
         case '50':
         case '51':
@@ -317,10 +319,12 @@ $('#card-number').keydown(function (event) {
         case '54':
         case '55':
           $('#inline-mastercard').show();
+          cardType = "mastercard"
           break;
         case '34':
         case '37':
           $('#inline-amex').show();
+          cardType = "amex"
           break;
         default:
           console.log("Default case")
@@ -328,10 +332,17 @@ $('#card-number').keydown(function (event) {
             $('#inline-visa').hide();
             $('#inline-mastercard').hide();
             $('#inline-amex').hide();
+            cardType = null
           }
-          if (result.length == 5 || result.length == 10 || result.length == 15) {
-            console.log("5 char met")
-            $('#card-number').val($('#card-number').val().concat(" "))
+
+          if (cardType == "visa") {
+            if (result.length == 5 || result.length == 10 || result.length == 15) {
+              $('#card-number').val($('#card-number').val().concat(" "))
+            }
+          } else if (cardType == "mastercard") {
+            if (result.length == 5 || result.length == 12) {
+              $('#card-number').val($('#card-number').val().concat(" "))
+            }
           }
       }
     } else {
