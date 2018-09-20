@@ -311,6 +311,7 @@ $('#card-number').keydown(function (event) {
         case '49':
           $('#inline-visa').show();
           cardType = "visa"
+          $('#card-number').attr("maxlength", "19")
           break;
         case '50':
         case '51':
@@ -320,10 +321,12 @@ $('#card-number').keydown(function (event) {
         case '55':
           $('#inline-mastercard').show();
           cardType = "mastercard"
+          $('#card-number').attr("maxlength", "19")
           break;
         case '34':
         case '37':
           $('#inline-amex').show();
+          $('#card-number').attr("maxlength", "17")
           cardType = "amex"
           break;
         default:
@@ -332,6 +335,7 @@ $('#card-number').keydown(function (event) {
             $('#inline-visa').hide();
             $('#inline-mastercard').hide();
             $('#inline-amex').hide();
+            $('#card-number').attr("maxlength", "19")
             cardType = null
           }
 
