@@ -359,11 +359,15 @@ $('#card-number').keydown(function (event) {
       inputValue = inputValue.slice(0, -1)
 
       if (cardType == "visa" || cardType == "mastercard") {
+        console.log("Deletion, card type is " + cardType)
         if (result.length == 5 || result.length == 10 || result.length == 15) {
+          console.log("Deletion, inside other condition")
           $('#card-number').val($('#card-number').val().slice(0, -1))
         }
       } else if (cardType == "amex") {
+        console.log("Deletion, card type is " + amex)
         if (result.length == 5 || result.length == 12) {
+          console.log("Deletion, inside other condition")
           $('#card-number').val($('#card-number').val().slice(0, -1))
         }
       }
