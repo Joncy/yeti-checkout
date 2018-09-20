@@ -388,24 +388,24 @@ $('#card-number').keydown(function (event) {
 $('#card-number').blur(function () {
   if ($('#card-number').val().length > 0) {
     if (cardType == "visa" || cardType == "mastercard") {
+      $('#error-card-not-accepted').hide()
       if ($('#card-number').val().length < 19) {
         $('#error-card-length-invalid-visa').show()
         $('#card-number').css('border', '2px solid rgb(255,114,118)')
         $('#card-number').css('background-color', 'rgba(255,114,118,0.2)')
       } else {
         $('#error-card-length-invalid-visa').hide()
-        $('#error-card-not-accepted').hide()
         $('#card-number').css('border', 'none')
         $('#card-number').css('background-color', 'rgba(17,50,80,0.4)')
       }
-    } if (cardType == "amex") {
+    } else if (cardType == "amex") {
+      $('#error-card-not-accepted').hide()
       if ($('#card-number').val().length < 17) {
         $('#error-card-length-invalid-amex').show()
         $('#card-number').css('border', '2px solid rgb(255,114,118)')
         $('#card-number').css('background-color', 'rgba(255,114,118,0.2)')
       } else {
-        $('#error-card-length-invalid-amex').hide()
-        $('#error-card-not-accepted').hide()
+        $('#error-card-length-invalid-visa').hide()
         $('#card-number').css('border', 'none')
         $('#card-number').css('background-color', 'rgba(17,50,80,0.4)')
       }
