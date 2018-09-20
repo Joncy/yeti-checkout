@@ -329,8 +329,10 @@ $('#card-number').keydown(function (event) {
             $('#inline-mastercard').hide();
             $('#inline-amex').hide();
           }
-          if (result.length == 5 || result.length == 9 || result.length == 13)
+          if (result.length == 5 || result.length == 9 || result.length == 13) {
+            console.log("5 char met")
             $('#card-number').val().concat(" ")
+          }
       }
     } else {
       inputValue = inputValue.slice(0, -1)
@@ -354,10 +356,9 @@ $('#card-number').keydown(function (event) {
     }
   }
 
+  $('#card-number').blur(function (event) {
 
-  // if 4*** **** **** **** then visa
-  // else if 5[0-5]** **** **** **** then mastercard
-  // else if 3(4/7)** **** ****
+  }
 })
 
 /*
