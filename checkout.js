@@ -312,6 +312,7 @@ $('#card-number').keydown(function (event) {
           $('#inline-amex').hide();
           cardType = "visa"
           $('#card-number').attr("maxlength", "19")
+          $('#cvc').attr("maxlength", "3")
           break;
         case '50':
         case '51':
@@ -324,6 +325,7 @@ $('#card-number').keydown(function (event) {
           $('#inline-amex').hide();
           cardType = "mastercard"
           $('#card-number').attr("maxlength", "19")
+          $('#cvc').attr("maxlength", "3")
           break;
         case '34':
         case '37':
@@ -331,6 +333,7 @@ $('#card-number').keydown(function (event) {
           $('#inline-mastercard').hide();
           $('#inline-visa').hide();
           $('#card-number').attr("maxlength", "17")
+          $('#cvc').attr("maxlength", "4")
           cardType = "amex"
           break;
         default:
@@ -340,6 +343,7 @@ $('#card-number').keydown(function (event) {
             $('#inline-mastercard').hide();
             $('#inline-amex').hide();
             $('#card-number').attr("maxlength", "19")
+            $('#cvc').attr("maxlength", "4")
             cardType = null
           }
 
@@ -424,9 +428,31 @@ $('#cvc').keydown(function (event) {
     event.preventDefault();
 })
 
-/*$('#cvc').blur(function () {
-
-  }*/
+$('#cvc').blur(function () {
+  if ($('#cvc').val().length > 0) {
+    if (cardType == "visa" || cardType == "mastercard") {
+      if ($('#cvc').val().length < 3) {
+        $('#error-cvc-length-invalid-visa').show()
+        $('#cvc').css('border', '2px solid rgb(255,114,118)')
+        $('#cvc').css('background-color', 'rgba(255,114,118,0.2)')
+      } else {
+        $('#error-cvc-length-invalid-visa').hide()
+        $('#cvc').css('border', 'none')
+        $('#cvc').css('background-color', 'rgba(17,50,80,0.1)')
+      }
+    } else if (cardType == "amex") {
+      if ($('#cvc').val().length < 4) {
+        $('#error-cvc-length-invalid-amex').show()
+        $('#cvc').css('border', '2px solid rgb(255,114,118)')
+        $('#cvc').css('background-color', 'rgba(255,114,118,0.2)')
+      } else {
+        $('#error-cvc-length-invalid-amex').hide()
+        $('#cvc').css('border', 'none')
+        $('#cvc').css('background-color', 'rgba(17,50,80,0.1)')
+      }
+    }
+  }
+})
 
 /* Function declarations */
 // Transform kebab case to snake case
