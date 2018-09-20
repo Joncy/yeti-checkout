@@ -389,6 +389,7 @@ $('#card-number').blur(function () {
   if ($('#card-number').val().length > 0) {
     if (cardType == "visa" || cardType == "mastercard") {
       $('#error-card-not-accepted').hide()
+      $('#error-card-length-invalid-amex').hide()
       if ($('#card-number').val().length < 19) {
         $('#error-card-length-invalid-visa').show()
         $('#card-number').css('border', '2px solid rgb(255,114,118)')
@@ -400,6 +401,7 @@ $('#card-number').blur(function () {
       }
     } else if (cardType == "amex") {
       $('#error-card-not-accepted').hide()
+      $('#error-card-length-invalid-visa').hide()
       if ($('#card-number').val().length < 17) {
         $('#error-card-length-invalid-amex').show()
         $('#card-number').css('border', '2px solid rgb(255,114,118)')
