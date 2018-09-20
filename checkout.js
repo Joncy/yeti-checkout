@@ -384,6 +384,29 @@ $('#card-number').keydown(function (event) {
   }
 })
 
+// Validate card number
+$('#card-number').blur(function () {
+  if ($('#card-number').val().length > 0) {
+    if (cardType == "visa" || cardType == "mastercard") {
+      if ($('#card-number').val().length < 19) {
+        $('#error-card-length-invalid-visa').show()
+        $('#card-number').css('border', '2px solid rgb(255,114,118)')
+        $('#card-number').css('background-color', 'rgba(255,114,118,.1)')
+      }
+    } if (cardType == "amex") {
+      if ($('#card-number').val().length < 17) {
+        $('#error-card-length-invalid-amex').show()
+        $('#card-number').css('border', '2px solid rgb(255,114,118)')
+        $('#card-number').css('background-color', 'rgba(255,114,118,.1)')
+      }
+    } else {
+      $('#error-card-not-accepted').show()
+      $('#card-number').css('border', '2px solid rgb(255,114,118)')
+      $('#card-number').css('background-color', 'rgba(255,114,118,.1)')
+    }
+  }
+})
+
 /* Function declarations */
 // Transform kebab case to snake case
 function kebabToSnake (str) {
