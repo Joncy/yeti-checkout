@@ -343,7 +343,7 @@ $('#card-number').keydown(function (event) {
             if (result.length == 5 || result.length == 10 || result.length == 15) {
               $('#card-number').val($('#card-number').val().concat(" "))
             }
-          } else if (cardType == "mastercard") {
+          } else if (cardType == "amex") {
             if (result.length == 5 || result.length == 12) {
               $('#card-number').val($('#card-number').val().concat(" "))
             }
