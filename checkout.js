@@ -358,11 +358,15 @@ $('#card-number').keydown(function (event) {
     } else {
       inputValue = inputValue.slice(0, -1)
 
-      if (inputValue.length == 5 || inputValue.length == 10 || inputValue.length == 15) {
-        $('#card-number').val($('#card-number').val().slice(0, -1))
-        inputValue = inputValue.slice(0, -1)
+      if (cardType == "visa" || cardType == "mastercard") {
+        if (result.length == 5 || result.length == 10 || result.length == 15) {
+          $('#card-number').val($('#card-number').val().slice(0, -1))
+        }
+      } else if (cardType == "amex") {
+        if (result.length == 5 || result.length == 12) {
+          $('#card-number').val($('#card-number').val().slice(0, -1))
+        }
       }
-
 
       if (inputValue.length < 2) {
         switch (inputValue) {
