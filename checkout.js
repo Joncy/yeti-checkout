@@ -357,19 +357,6 @@ $('#card-number').keydown(function (event) {
   }
 })
 
-$('#card-number').blur(function (event) {
-
-})
-
-/*
-  if (0 < $('#card-number').val().length < 3) {
-    
-  }
-*/
-
-
-
-
 /* Function declarations */
 // Transform kebab case to snake case
 function kebabToSnake (str) {
