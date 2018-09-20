@@ -355,11 +355,11 @@ $('#card-number').keydown(function (event) {
       }
     }
   }
-}
+})
 
 $('#card-number').blur(function (event) {
 
-  })
+})
 
 /*
   if (0 < $('#card-number').val().length < 3) {
@@ -373,87 +373,87 @@ $('#card-number').blur(function (event) {
 /* Function declarations */
 // Transform kebab case to snake case
 function kebabToSnake (str) {
-    var myString = str.replace(/-/g, "_");
-    return myString;
-  }
+  var myString = str.replace(/-/g, "_");
+  return myString;
+}
 
 // Change plan summary when user selects it on plan selector
 function changePlan (targetPlan, otherPlan) {
-    $('#contents-' + otherPlan).hide();
-    $('#contents-' + targetPlan).show();
-    $('#premium-' + targetPlan).css("border-color", "#59cbe8");
-    $('#premium-' + otherPlan).css("border-color", "rgba(17,50,80,.25)");
-    currentPlan = "premium-" + targetPlan;
-  }
+  $('#contents-' + otherPlan).hide();
+  $('#contents-' + targetPlan).show();
+  $('#premium-' + targetPlan).css("border-color", "#59cbe8");
+  $('#premium-' + otherPlan).css("border-color", "rgba(17,50,80,.25)");
+  currentPlan = "premium-" + targetPlan;
+}
 
 // Catch firebase redirects and get info into cookies
 $(document).ready(() => {
-    firebase.auth().getRedirectResult()
-      .then(result => {
-        if (result.user) {
+  firebase.auth().getRedirectResult()
+    .then(result => {
+      if (result.user) {
+        $('#form-loading').hide();
+        $('#log-in-container').hide();
+        $('#sign-up-container').hide();
+        $('#payment-container').show();
+
+        // Set user parameters in firebase
+        setCookie(result.user.uid, result.user.email, result.credential.providerId, result.user.displayName)
+
+        const data = {
+          email: Cookies.get('email'),
+          uid: Cookies.get('uid'),
+          provider: Cookies.get('provider'),
+          name: Cookies.get('name')
+        }
+
+        if (!result.additionalUserInfo.isNewUser) {
+          $.ajax({
+            type: "POST",
+            url: 'https://netbeast-api-staging.now.sh/api/setuser',
+            data: data,
+            success: () => {
+              console.log('Success')
+            },
+            error: (error) => {
+              console.log({error})
+            }
+          });
+        } else {
+          console.log("User already created")
+        }
+
+      } else {
+        if (Cookies.get('email') && Cookies.get('uid')) {
           $('#form-loading').hide();
           $('#log-in-container').hide();
           $('#sign-up-container').hide();
           $('#payment-container').show();
-
-          // Set user parameters in firebase
-          setCookie(result.user.uid, result.user.email, result.credential.providerId, result.user.displayName)
-
-          const data = {
-            email: Cookies.get('email'),
-            uid: Cookies.get('uid'),
-            provider: Cookies.get('provider'),
-            name: Cookies.get('name')
-          }
-
-          if (!result.additionalUserInfo.isNewUser) {
-            $.ajax({
-              type: "POST",
-              url: 'https://netbeast-api-staging.now.sh/api/setuser',
-              data: data,
-              success: () => {
-                console.log('Success')
-              },
-              error: (error) => {
-                console.log({error})
-              }
-            });
-          } else {
-            console.log("User already created")
-          }
-
+          $('#logout-button').show();
         } else {
-          if (Cookies.get('email') && Cookies.get('uid')) {
-            $('#form-loading').hide();
-            $('#log-in-container').hide();
-            $('#sign-up-container').hide();
-            $('#payment-container').show();
-            $('#logout-button').show();
-          } else {
-            $('#form-loading').hide();
-            $('#log-in-container').show();
-            $('#sign-up-container').hide();
-            $('#payment-container').hide();
-            $('#logout-button').hide();
+          $('#form-loading').hide();
+          $('#log-in-container').show();
+          $('#sign-up-container').hide();
+          $('#payment-container').hide();
+          $('#logout-button').hide();
 
-            var urlParams = new URLSearchParams(window.location.search)
-            if (urlParams.get('login') !== null) {
-              $('#log-in-required-alert').fadeIn()
+          var urlParams = new URLSearchParams(window.location.search)
+          if (urlParams.get('login') !== null) {
+            $('#log-in-required-alert').fadeIn()
 
-              window.setTimeout(function () {
-                $('#log-in-required-alert').fadeOut()
-              }, 4000)
-            }
+            window.setTimeout(function () {
+              $('#log-in-required-alert').fadeOut()
+            }, 4000)
           }
         }
-      })
-      .catch(err => console.log(err))
-  })
+      }
+    })
+    .catch(err => console.log(err))
+})
 
 // Save a uid and email into a cookie
 function setCookie (uid, email, provider, name) {
-    Cookies.set('uid', uid)
-    Cookies.set('email', email)
-    Cookies.set('provider', provider)
-    Cookies.set('name', name)
-  }
+  Cookies.set('uid', uid)
+  Cookies.set('email', email)
+  Cookies.set('provider', provider)
+  Cookies.set('name', name)
+}
