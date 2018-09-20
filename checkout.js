@@ -329,7 +329,7 @@ $('#card-number').keydown(function (event) {
             $('#inline-mastercard').hide();
             $('#inline-amex').hide();
           }
-          if (result.length == 5 || result.length == 9 || result.length == 13) {
+          if (result.length == 5 || result.length == 10 || result.length == 15) {
             console.log("5 char met")
             $('#card-number').val($('#card-number').val().concat(" "))
           }
