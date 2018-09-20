@@ -397,7 +397,7 @@ $('#card-number').blur(function () {
       } else {
         $('#error-card-length-invalid-visa').hide()
         $('#card-number').css('border', 'none')
-        $('#card-number').css('background-color', 'rgba(17,50,80,0.4)')
+        $('#card-number').css('background-color', 'rgba(17,50,80,0.1)')
       }
     } else if (cardType == "amex") {
       $('#error-card-not-accepted').hide()
@@ -407,9 +407,9 @@ $('#card-number').blur(function () {
         $('#card-number').css('border', '2px solid rgb(255,114,118)')
         $('#card-number').css('background-color', 'rgba(255,114,118,0.2)')
       } else {
-        $('#error-card-length-invalid-visa').hide()
+        $('#error-card-length-invalid-amex').hide()
         $('#card-number').css('border', 'none')
-        $('#card-number').css('background-color', 'rgba(17,50,80,0.4)')
+        $('#card-number').css('background-color', 'rgba(17,50,80,0.1)')
       }
     } else {
       $('#error-card-not-accepted').show()
