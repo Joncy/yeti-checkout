@@ -310,6 +310,8 @@ $('#card-number').keydown(function (event) {
         case '48':
         case '49':
           $('#inline-visa').show();
+          $('#inline-mastercard').hide();
+          $('#inline-amex').hide();
           cardType = "visa"
           $('#card-number').attr("maxlength", "19")
           break;
@@ -320,12 +322,16 @@ $('#card-number').keydown(function (event) {
         case '54':
         case '55':
           $('#inline-mastercard').show();
+          $('#inline-visa').hide();
+          $('#inline-amex').hide();
           cardType = "mastercard"
           $('#card-number').attr("maxlength", "19")
           break;
         case '34':
         case '37':
           $('#inline-amex').show();
+          $('#inline-mastercard').hide();
+          $('#inline-visa').hide();
           $('#card-number').attr("maxlength", "17")
           cardType = "amex"
           break;
@@ -339,7 +345,7 @@ $('#card-number').keydown(function (event) {
             cardType = null
           }
 
-          if (cardType == "visa") {
+          if (cardType == "visa" || cardType == "mastercard") {
             if (result.length == 5 || result.length == 10 || result.length == 15) {
               $('#card-number').val($('#card-number').val().concat(" "))
             }
