@@ -393,6 +393,8 @@ $('#card-number').blur(function () {
       $('#error-card-not-accepted').hide()
       $('#error-card-length-invalid-amex').hide()
       $('#error-cvc-length-invalid-amex').hide()
+      $('#cvc').css('border', 'none')
+      $('#cvc').css('background-color', 'rgba(17,50,80,0.1)')
       if ($('#card-number').val().length < 19) {
         $('#error-card-length-invalid-visa').show()
         $('#card-number').css('border', '2px solid rgb(255,114,118)')
@@ -406,6 +408,8 @@ $('#card-number').blur(function () {
       $('#error-card-not-accepted').hide()
       $('#error-card-length-invalid-visa').hide()
       $('#error-cvc-length-invalid-visa').hide()
+      $('#cvc').css('border', 'none')
+      $('#cvc').css('background-color', 'rgba(17,50,80,0.1)')
       if ($('#card-number').val().length < 17) {
         $('#error-card-length-invalid-amex').show()
         $('#card-number').css('border', '2px solid rgb(255,114,118)')
