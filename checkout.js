@@ -331,14 +331,14 @@ $('#card-number').keydown(function (event) {
           }
           if (result.length == 5 || result.length == 9 || result.length == 13) {
             console.log("5 char met")
-            $('#card-number').val().concat(" ")
+            $('#card-number').val($('#card-number').val().concat(" "))
           }
       }
     } else {
       inputValue = inputValue.slice(0, -1)
 
       if (inputValue.length == 5 || inputValue.length == 9 || inputValue.length == 13) {
-        $('#card-number').val() = $('#card-number').val().slice(0, -1)
+        $('#card-number').val($('#card-number').val().slice(0, -1))
         inputValue = inputValue.slice(0, -1)
       }
 
