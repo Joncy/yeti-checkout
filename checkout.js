@@ -298,6 +298,8 @@ Webflow.push(function () {
         // Change view to reflect payment success
       },
       error: (error) => {
+        console.log(error)
+        console.log(error.responseJSON)
         if (error.responseJSON.type == "StripeCardError") {
           if (error.responseJSON.code == "incorrect_number") {
             $('#error-incorrect-cvc').show()
