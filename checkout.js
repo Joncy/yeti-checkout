@@ -57,18 +57,6 @@ $('#logout-button').click(function () {
 })
 
 // Switch from sign up form to log in form and viceversa
-/*$('#sign-up-link').click(function () {
-  console.log("Log In to Sign Up")
-  $('#log-in-container').toggle();
-  $('#sign-up-container').toggle();
-});
-
-$('#log-in-link').click(function () {
-  console.log("Sign Up to Log In")
-  $('#log-in-container').toggle();
-  $('#sign-up-container').toggle();
-});*/
-
 $('.switcher').click(function () {
   $('#log-in-container').toggle()
   $('#sign-up-container').toggle()
@@ -244,7 +232,43 @@ Webflow.push(function () {
   // unbind webflow form handling
   $(document).off('submit');
 
-  // new form handling
+  // Login form handling
+  $('#login-form').submit(function (evt)) {
+    evt.preventDefault()
+
+    // Show loading state in button
+    $('#login').hide();
+    $('#login-loading').show();
+
+    const data = {
+      email: $('#login-email').val(),
+      password: $('#login-password').val()
+    }
+
+    $.ajax({
+      type: "POST",
+      url: 'https://netbeast-api-staging.now.sh/api/signin',
+      data: data,
+      success: () => {
+        console.log('Success')
+        // Change view to reflect login success
+
+        // Save email into Cookie -> save uid into cookie?
+      },
+      error: (error) => {
+        console.log(error)
+
+        // Show button again
+        $('#login').show();
+        $('#login-loading').hide();
+
+      }
+    });
+
+  }
+
+
+  // Payment form handling
   $('#wf-form-Payment-Info-Form').submit(function (evt) {
     evt.preventDefault();
 
@@ -559,7 +583,7 @@ $(document).ready(() => {
           email: Cookies.get('email'),
           uid: Cookies.get('uid'),
           provider: Cookies.get('provider'),
-          name: Cookies.get('name')
+          alias: Cookies.get('name')
         }
 
         if (!result.additionalUserInfo.isNewUser) {
