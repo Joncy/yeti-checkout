@@ -249,10 +249,10 @@ Webflow.push(function () {
       type: "POST",
       url: 'https://netbeast-api-staging.now.sh/api/signin',
       data: data,
-      success: () => {
+      success: (response) => {
         console.log('Success')
         // Change view to reflect login success
-
+        console.log(response)
         // Save email into Cookie -> save uid into cookie?
       },
       error: (error) => {
