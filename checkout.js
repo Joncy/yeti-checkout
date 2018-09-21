@@ -249,17 +249,27 @@ Webflow.push(function () {
       else
         return window.location.replace(window.location.href + "?login")
 
+    // Check if expiry month and year are set (other fields are checked by default html)
+    if ($('#expiry-month option:checked').val() == null) {
+      $('#error-expiry-date-not-set').show();
+      $('#expiry-month').css('border', '2px solid rgb(255,114,118)')
+      $('#expiry-month').css('background-color', 'rgba(255,114,118,0.2)')
+      return
+    } else if ($('#expiry-month option:checked').val() == null) {
+      $('#error-expiry-date-not-set').show();
+      $('#expiry-year').css('border', '2px solid rgb(255,114,118)')
+      $('#expiry-year').css('background-color', 'rgba(255,114,118,0.2)')
+      return
+    }
+
     // Show loading state in button
     $('#submit-card-info').hide();
     $('#submit-button-loading').show();
 
-    console.log("With spaces: " + $('#card-number').val())
-    console.log("Without spaces: " + $('#card-number').val().replace(/\s/g, ""))
-
     const data = {
       email: Cookies.get('email'),
       uid: Cookies.get('uid'),
-      number: $('#card-number').val(),
+      number: $('#card-number').val().replace(/\s/g, ""),
       exp_month: $('#expiry-month option:checked').val(),
       exp_year: $('#expiry-year option:checked').val(),
       cvc: $('#cvc').val(),
