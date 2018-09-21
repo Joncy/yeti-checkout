@@ -258,6 +258,12 @@ Webflow.push(function () {
       error: (error) => {
         console.log(error)
 
+        $('#log-in-error-alert').fadeIn()
+
+        window.setTimeout(function () {
+          $('#log-in-error-alert').fadeOut()
+        }, 4000)
+
         // Show button again
         $('#login').show()
         $('#login-loading').hide()
