@@ -253,14 +253,19 @@ Webflow.push(function () {
     console.log($('#expiry-month option:checked').val())
     console.log($('#expiry-month option:checked').val())
 
+    const expiryMonth = $('#expiry-month option:checked').val()
+    const expiryYear = $('#expiry-year option:checked').val()
+
     // Check if expiry month and year are set (other fields are checked by default html)
-    if ($('#expiry-month option:checked').val() == null) {
+    if (!expiryMonth || expiryMonth === "null") {
       console.log("1")
       $('#error-expiry-date-not-set').show();
       $('#expiry-month').css('border', '2px solid rgb(255,114,118)')
       $('#expiry-month').css('background-color', 'rgba(255,114,118,0.2)')
       return null
-    } else if ($('#expiry-year option:checked').val() == null) {
+    }
+
+    if (!expiryYear || expiryYear === "null") {
       console.log("2")
       $('#error-expiry-date-not-set').show();
       $('#expiry-year').css('border', '2px solid rgb(255,114,118)')
