@@ -250,10 +250,10 @@ Webflow.push(function () {
       url: 'https://netbeast-api-staging.now.sh/api/signin',
       data: data,
       success: (response) => {
-        console.log('Success')
-        // Change view to reflect login success
-        console.log(response)
-        // Save email into Cookie -> save uid into cookie?
+        Cookies.set('email', $('#login-email').val())
+        Cookies.set('uid', response)
+        $('#log-in-container').hide()
+        $('#payment-container').show()
       },
       error: (error) => {
         console.log(error)
