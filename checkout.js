@@ -253,6 +253,8 @@ Webflow.push(function () {
     $('#submit-card-info').hide();
     $('#submit-button-loading').show();
 
+    console.log("With spaces: " + $('#card-number').val())
+    console.log("Without spaces: " + $('#card-number').val().replace(/\s/g, ""))
 
     const data = {
       email: Cookies.get('email'),
@@ -285,6 +287,7 @@ Webflow.push(function () {
 });
 
 /* Form validation */
+// Treat input on card number field
 $('#card-number').keydown(function (event) {
 
   var inputValue = $('#card-number').val() // Valor del input
@@ -429,11 +432,13 @@ $('#card-number').blur(function () {
   }
 })
 
+// Treat cvc input
 $('#cvc').keydown(function (event) {
   if ((event.which < 48 || event.which > 57) && event.which != 8)
     event.preventDefault();
 })
 
+// Validate cvc
 $('#cvc').blur(function () {
   if ($('#cvc').val().length > 0) {
     if (cardType == "visa" || cardType == "mastercard") {
