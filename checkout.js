@@ -58,11 +58,13 @@ $('#logout-button').click(function () {
 
 // Switch from sign up form to log in form and viceversa
 $('#sign-up-link').click(function () {
+  console.log("Log In to Sign Up")
   $('#log-in-container').toggle();
   $('#sign-up-container').toggle();
 });
 
 $('#log-in-link').click(function () {
+  console.log("Sign Up to Log In")
   $('#log-in-container').toggle();
   $('#sign-up-container').toggle();
 });
@@ -299,7 +301,7 @@ Webflow.push(function () {
       error: (error) => {
         console.log(error)
         console.log(error.responseJSON)
-        if (error.responseJSON.type != "StripeCardError") { // change the != for == !!!!
+        if (error.responseJSON.type == "StripeCardError") {
           if (error.responseJSON.code == "incorrect_cvc" || error.responseJSON.code == "invalid_cvc") {
             $('#error-incorrect-cvc').show()
             $('#cvc').css('border', '2px solid rgb(255,114,118)')
@@ -322,7 +324,6 @@ Webflow.push(function () {
         // Show button again
         $('#submit-card-info').show();
         $('#submit-button-loading').hide();
-
 
       }
     });
