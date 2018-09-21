@@ -306,6 +306,18 @@ Webflow.push(function () {
   });
 });
 
+$('#expiry-month').change(function () {
+  $('#error-expiry-date-not-set').hide();
+  $('#expiry-month').css('border', 'none')
+  $('#expiry-month').css('background-color', 'rgba(17,50,80,0.1)')
+})
+
+$('#expiry-year').change(function () {
+  $('#error-expiry-date-not-set').hide();
+  $('#expiry-year').css('border', 'none')
+  $('#expiry-year').css('background-color', 'rgba(17,50,80,0.1)')
+})
+
 /* Form validation */
 // Treat input on card number field
 $('#card-number').keydown(function (event) {
