@@ -605,7 +605,7 @@ $('#cvc').blur(function () {
 
 // Validate email on sign up
 $('#signup-email').blur(function () {
-  if (!validateEmail($('#signup-email').val()) {
+  if (!validateEmail($('#signup-email').val())) {
     $('#error-email-invalid').show()
     $('#signup-email').css('border', '2px solid rgb(255,114,118)')
     $('#signup-email').css('background-color', 'rgba(255,114,118,0.2)')
