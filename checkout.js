@@ -249,10 +249,6 @@ Webflow.push(function () {
       else
         return window.location.replace(window.location.href + "?login")
 
-    console.log("Expiry date")
-    console.log($('#expiry-month option:checked').val())
-    console.log($('#expiry-month option:checked').val())
-
     const expiryMonth = $('#expiry-month option:checked').val()
     const expiryYear = $('#expiry-year option:checked').val()
 
@@ -271,6 +267,9 @@ Webflow.push(function () {
 
     if (!expiryMonth || expiryMonth === "null" || !expiryYear || expiryYear === "null")
       return null
+
+    $('#error-card-rejected').hide()
+    $('#inline-system').hide()
 
     // Show loading state in button
     $('#submit-card-info').hide();
@@ -300,7 +299,7 @@ Webflow.push(function () {
       error: (error) => {
         console.log(error)
         console.log(error.responseJSON)
-        if (error.responseJSON.type == "StripeCardError") {
+        if (error.responseJSON.type != "StripeCardError") { // change the != for == !!!!
           if (error.responseJSON.code == "incorrect_cvc" || error.responseJSON.code == "invalid_cvc") {
             $('#error-incorrect-cvc').show()
             $('#cvc').css('border', '2px solid rgb(255,114,118)')
@@ -311,9 +310,15 @@ Webflow.push(function () {
             $('#expiry-month').val(null)
             $('#expiry-year').val("")
             $('#cvc').val("")
-            $('#error-card-rejected').show()
+            $('#error-card-rejected').css('display', 'flex')
+            $('#inline-visa').hide()
+            $('#inline-amex').hide()
+            $('#inline-mastercard').hide()
           }
+        } else {
+          $('#error-system').css('display', 'flex')
         }
+
         // Show button again
         $('#submit-card-info').show();
         $('#submit-button-loading').hide();
