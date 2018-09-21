@@ -249,13 +249,17 @@ Webflow.push(function () {
       else
         return window.location.replace(window.location.href + "?login")
 
+    console.log("Expiry date")
+    console.log($('#expiry-month option:checked').val())
+    console.log($('#expiry-month option:checked').val())
+
     // Check if expiry month and year are set (other fields are checked by default html)
     if ($('#expiry-month option:checked').val() == null) {
       $('#error-expiry-date-not-set').show();
       $('#expiry-month').css('border', '2px solid rgb(255,114,118)')
       $('#expiry-month').css('background-color', 'rgba(255,114,118,0.2)')
       return
-    } else if ($('#expiry-month option:checked').val() == null) {
+    } else if ($('#expiry-year option:checked').val() == null) {
       $('#error-expiry-date-not-set').show();
       $('#expiry-year').css('border', '2px solid rgb(255,114,118)')
       $('#expiry-year').css('background-color', 'rgba(255,114,118,0.2)')
