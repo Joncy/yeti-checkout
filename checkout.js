@@ -233,12 +233,12 @@ Webflow.push(function () {
   $(document).off('submit');
 
   // Login form handling
-  $('#login-form').submit(function (evt)) {
+  $('#login-form').submit(function (evt) {
     evt.preventDefault()
 
     // Show loading state in button
-    $('#login').hide();
-    $('#login-loading').show();
+    $('#login').hide()
+    $('#login-loading').show()
 
     const data = {
       email: $('#login-email').val(),
@@ -259,13 +259,12 @@ Webflow.push(function () {
         console.log(error)
 
         // Show button again
-        $('#login').show();
-        $('#login-loading').hide();
+        $('#login').show()
+        $('#login-loading').hide()
 
       }
-    });
-
-  }
+    })
+  })
 
 
   // Payment form handling
