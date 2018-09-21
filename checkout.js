@@ -295,12 +295,21 @@ Webflow.push(function () {
       data: data,
       success: () => {
         console.log('Success')
+        // Change view to reflect payment success
       },
       error: (error) => {
-        console.log({error})
+        if (error.responseJSON.type == "StripeCardError") {
+          if (error.responseJSON.code == "incorrect_number") {
+            $('#error-incorrect-cvc').show()
+            $('#cvc').css('border', '2px solid rgb(255,114,118)')
+            $('#cvc').css('background-color', 'rgba(255,114,118,0.2)')
+          }
+        }
         // Show button again
         $('#submit-card-info').show();
         $('#submit-button-loading').hide();
+
+
       }
     });
   });
