@@ -287,7 +287,7 @@ Webflow.push(function () {
       url: 'https://netbeast-api-staging.now.sh/api/signup',
       data: data,
       success: (response) => {
-        Cookies.set('email', $('#login-email').val())
+        Cookies.set('email', $('#signup-email').val())
         Cookies.set('uid', response)
         Cookies.set('name', $('#signup-name').val())
 
