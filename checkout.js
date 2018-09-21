@@ -603,7 +603,27 @@ $('#cvc').blur(function () {
   }
 })
 
+// Validate email on sign up
+$('#signup-email').blur(function () {
+  if (!validateEmail($('#signup-email').val()) {
+    $('#error-email-invalid').show()
+    $('#signup-email').css('border', '2px solid rgb(255,114,118)')
+    $('#signup-email').css('background-color', 'rgba(255,114,118,0.2)')
+  } else {
+    $('#error-email-already-in-use').hide();
+    $('#error-email-invalid').hide()
+    $('#signup-email').css('border', 'none')
+    $('#signup-email').css('background-color', 'rgba(17,50,80,0.1)')
+  }
+})
+
 /* Function declarations */
+// Validate email
+function validateEmail (email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
 // Transform kebab case to snake case
 function kebabToSnake (str) {
   var myString = str.replace(/-/g, "_");
