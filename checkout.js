@@ -258,20 +258,19 @@ Webflow.push(function () {
 
     // Check if expiry month and year are set (other fields are checked by default html)
     if (!expiryMonth || expiryMonth === "null") {
-      console.log("1")
       $('#error-expiry-date-not-set').show();
       $('#expiry-month').css('border', '2px solid rgb(255,114,118)')
       $('#expiry-month').css('background-color', 'rgba(255,114,118,0.2)')
-      return null
     }
 
     if (!expiryYear || expiryYear === "null") {
-      console.log("2")
       $('#error-expiry-date-not-set').show();
       $('#expiry-year').css('border', '2px solid rgb(255,114,118)')
       $('#expiry-year').css('background-color', 'rgba(255,114,118,0.2)')
-      return null
     }
+
+    if (!expiryMonth || expiryMonth === "null" || !expiryYear || expiryYear === "null")
+      return null
 
     // Show loading state in button
     $('#submit-card-info').hide();
