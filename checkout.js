@@ -303,6 +303,12 @@ Webflow.push(function () {
       error: (error) => {
         console.log(error)
 
+        if (error.responseTest == "auth/email-already-in-use") {
+          $('#error-email-already-in-use').show();
+          $('#signup-email').css('border', '2px solid rgb(255,114,118)')
+          $('#signup-email').css('background-color', 'rgba(255,114,118,0.2)')
+        }
+
         // Show button again
         $('#signup').show()
         $('#signup-loading').hide()
