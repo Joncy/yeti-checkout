@@ -275,7 +275,7 @@ Webflow.push(function () {
     $('#signup-loading').show()
 
     const data = {
-      alias: $('#signup-name').val()
+      alias: $('#signup-name').val(),
       email: $('#signup-email').val(),
       password: $('#signup-password').val(),
       locale: navigator.language,
