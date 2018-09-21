@@ -266,6 +266,45 @@ Webflow.push(function () {
     })
   })
 
+  // Signup form handling
+  $('#signup-form').submit(function (evt) {
+    evt.preventDefault()
+
+    // Show loading state in button
+    $('#signup').hide()
+    $('#signup-loading').show()
+
+    const data = {
+      alias: $('#signup-name').val()
+      email: $('#signup-email').val(),
+      password: $('#signup-password').val(),
+      locale: navigator.language,
+      country: realCountry
+    }
+
+    $.ajax({
+      type: "POST",
+      url: 'https://netbeast-api-staging.now.sh/api/signup',
+      data: data,
+      success: (response) => {
+        Cookies.set('email', $('#login-email').val())
+        Cookies.set('uid', response)
+        Cookies.set('name', $('#signup-name').val())
+
+        $('#sign-up-container').hide()
+        $('#payment-container').show()
+      },
+      error: (error) => {
+        console.log(error)
+
+        // Show button again
+        $('#signup').show()
+        $('#signup-loading').hide()
+
+      }
+    })
+  })
+
 
   // Payment form handling
   $('#wf-form-Payment-Info-Form').submit(function (evt) {
@@ -313,7 +352,10 @@ Webflow.push(function () {
       exp_year: $('#expiry-year option:checked').val(),
       cvc: $('#cvc').val(),
       name: $('#card-owner-name').val(),
-      plan: kebabToSnake(currentPlan)
+      plan: kebabToSnake(currentPlan),
+      country: realCountry,
+      locale: navigator.language,
+      alias: Cookies.get('name')
     }
 
     console.log(data)
