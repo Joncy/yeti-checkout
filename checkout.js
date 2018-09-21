@@ -301,10 +301,17 @@ Webflow.push(function () {
         console.log(error)
         console.log(error.responseJSON)
         if (error.responseJSON.type == "StripeCardError") {
-          if (error.responseJSON.code == "incorrect_number") {
+          if (error.responseJSON.code == "incorrect_cvc" || error.responseJSON.code == "invalid_cvc") {
             $('#error-incorrect-cvc').show()
             $('#cvc').css('border', '2px solid rgb(255,114,118)')
             $('#cvc').css('background-color', 'rgba(255,114,118,0.2)')
+          } else {
+            $('#card-owner-name').val("")
+            $('#card-number').val("")
+            $('#expiry-month').val(null)
+            $('#expiry-year').val("")
+            $('#cvc').val("")
+            $('#error-card-rejected').show()
           }
         }
         // Show button again
