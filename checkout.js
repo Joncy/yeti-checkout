@@ -57,7 +57,7 @@ $('#logout-button').click(function () {
 })
 
 // Switch from sign up form to log in form and viceversa
-$('#sign-up-link').click(function () {
+/*$('#sign-up-link').click(function () {
   console.log("Log In to Sign Up")
   $('#log-in-container').toggle();
   $('#sign-up-container').toggle();
@@ -67,7 +67,12 @@ $('#log-in-link').click(function () {
   console.log("Sign Up to Log In")
   $('#log-in-container').toggle();
   $('#sign-up-container').toggle();
-});
+});*/
+
+$('.switcher').click(function () {
+  $('#log-in-container').toggle()
+  $('#sign-up-container').toggle()
+})
 
 // Display plan selector for user country
 $('.display-plans-link').click(function () {
