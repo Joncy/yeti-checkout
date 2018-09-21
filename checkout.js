@@ -378,7 +378,7 @@ Webflow.push(function () {
       data: data,
       success: () => {
         console.log('Success')
-        // Change view to reflect payment success
+        return window.location.replace("http://getyeti.webflow.io/thank-you")
       },
       error: (error) => {
         console.log(error)
