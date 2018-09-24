@@ -247,7 +247,7 @@ Webflow.push(function () {
 
     $.ajax({
       type: "POST",
-      url: 'https://netbeast-api-staging.now.sh/api/signin',
+      url: 'https://netbeast-api.now.sh/api/signin',
       data: data,
       success: (response) => {
         Cookies.set('email', $('#login-email').val())
@@ -290,7 +290,7 @@ Webflow.push(function () {
 
     $.ajax({
       type: "POST",
-      url: 'https://netbeast-api-staging.now.sh/api/signup',
+      url: 'https://netbeast-api.now.sh/api/signup',
       data: data,
       success: (response) => {
         Cookies.set('email', $('#signup-email').val())
@@ -374,7 +374,7 @@ Webflow.push(function () {
 
     $.ajax({
       type: "POST",
-      url: 'https://netbeast-api-staging.now.sh/api/payment',
+      url: 'https://netbeast-api.now.sh/api/payment',
       data: data,
       success: () => {
         console.log('Success')
@@ -662,7 +662,7 @@ $(document).ready(() => {
         if (!result.additionalUserInfo.isNewUser) {
           $.ajax({
             type: "POST",
-            url: 'https://netbeast-api-staging.now.sh/api/setuser',
+            url: 'https://netbeast-api.now.sh/api/setuser',
             data: data,
             success: () => {
               console.log('Success')
