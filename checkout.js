@@ -115,32 +115,32 @@ $('.display-form-link').click(function () {
 // Change current plan
 $('#premium-annual-eur').click(function () {
   changePlan("annual-eur", "monthly-eur");
-  Cookies.set("plan", "monthly")
+  Cookies.set("plan", "annual")
 });
 
 $('#premium-monthly-eur').click(function () {
   changePlan("monthly-eur", "annual-eur");
-  Cookies.set("plan", "annual")
+  Cookies.set("plan", "monthly")
 });
 
 $('#premium-annual-gbp').click(function () {
   changePlan("annual-gbp", "monthly-gbp");
-  Cookies.set("plan", "monthly")
+  Cookies.set("plan", "annual")
 });
 
 $('#premium-monthly-gbp').click(function () {
   changePlan("monthly-gbp", "annual-gbp");
-  Cookies.set("plan", "annual")
+  Cookies.set("plan", "monthly")
 });
 
 $('#premium-annual-usd').click(function () {
   changePlan("annual-usd", "monthly-usd");
-  Cookies.set("plan", "monthly")
+  Cookies.set("plan", "annual")
 });
 
 $('#premium-monthly-usd').click(function () {
   changePlan("monthly-usd", "annual-usd");
-  Cookies.set("plan", "annual")
+  Cookies.set("plan", "monthly")
 });
 
 // Get user country and show appropriate plan
