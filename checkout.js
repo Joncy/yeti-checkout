@@ -378,7 +378,7 @@ Webflow.push(function () {
       data: data,
       success: () => {
         console.log('Success')
-        return window.location.replace("http://getyeti.webflow.io/thank-you")
+        return window.location.replace("http://getyeti.co/thank-you")
       },
       error: (error) => {
         console.log(error)
