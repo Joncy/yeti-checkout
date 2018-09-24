@@ -115,32 +115,42 @@ $('.display-form-link').click(function () {
 // Change current plan
 $('#premium-annual-eur').click(function () {
   changePlan("annual-eur", "monthly-eur");
+  Cookies.set("plan", "monthly")
 });
 
 $('#premium-monthly-eur').click(function () {
   changePlan("monthly-eur", "annual-eur");
+  Cookies.set("plan", "annual")
 });
 
 $('#premium-annual-gbp').click(function () {
   changePlan("annual-gbp", "monthly-gbp");
+  Cookies.set("plan", "monthly")
 });
 
 $('#premium-monthly-gbp').click(function () {
   changePlan("monthly-gbp", "annual-gbp");
+  Cookies.set("plan", "annual")
 });
 
 $('#premium-annual-usd').click(function () {
   changePlan("annual-usd", "monthly-usd");
+  Cookies.set("plan", "monthly")
 });
 
 $('#premium-monthly-usd').click(function () {
   changePlan("monthly-usd", "annual-usd");
+  Cookies.set("plan", "annual")
 });
 
 // Get user country and show appropriate plan
 $(document).ready(function () {
   var urlParams = new URLSearchParams(window.location.search);
-  var selectedPlan = urlParams.get('plan');
+  var selectedPlan = null;
+  if (Cookies.get("plan"))
+    selectedPlan = Cookies.get("plan")
+  else
+    selectedPlan = urlParams.get('plan');
 
   $.get("https://ipinfo.io", function (response) {
     switch (response.country) {
