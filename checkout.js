@@ -334,11 +334,6 @@ $('#premium-monthly-usd').click(function () {
   Cookies.set("plan", "monthly")
 });
 
-// Change country
-$('#country-link-eur').click(function () {
-
-})
-
 /* On load logic */
 // Get user country and show appropriate plan
 $(document).ready(function () {
