@@ -45,6 +45,7 @@ $('#signup-facebook').click(() => {
     .catch(err => console.log(err))
 })
 
+// Logout
 $('#logout-button').click(function () {
   firebase.auth().signOut()
     .then(() => {
@@ -56,184 +57,7 @@ $('#logout-button').click(function () {
     })
 })
 
-// Switch from sign up form to log in form and viceversa
-$('.switcher').click(function () {
-  $('#log-in-container').toggle()
-  $('#sign-up-container').toggle()
-})
-
-// Display plan selector for user country
-$('.display-plans-link').click(function () {
-  switch (currentCountry) {
-    case "EU":
-      $('#form-col').hide();
-      $('#plan-group-eur').show();
-      $('.display-plans-link').toggle();
-      $('.display-form-link').toggle();
-      break;
-    case "GB":
-      $('#form-col').hide();
-      $('#plan-group-gbp').show();
-      $('.display-plans-link').toggle();
-      $('.display-form-link').toggle();
-      break;
-    case "US":
-      $('#form-col').hide();
-      $('#plan-group-usd').show();
-      $('.display-plans-link').toggle();
-      $('.display-form-link').toggle();
-      break;
-    default:
-  }
-});
-
-// Display Form when selecting "Continue with ..." button
-$('.display-form-link').click(function () {
-  switch (currentCountry) {
-    case "EU":
-      $('#plan-group-eur').hide();
-      $('#form-col').show();
-      $('.display-form-link').toggle();
-      $('.display-plans-link').toggle();
-      break;
-    case "GB":
-      $('#plan-group-gbp').hide();
-      $('#form-col').show();
-      $('.display-form-link').toggle();
-      $('.display-plans-link').toggle();
-      break;
-    case "US":
-      $('#plan-group-usd').hide();
-      $('#form-col').show();
-      $('.display-form-link').toggle();
-      $('.display-plans-link').toggle();
-      break;
-    default:
-  }
-});
-
-// Change current plan
-$('#premium-annual-eur').click(function () {
-  changePlan("annual-eur", "monthly-eur");
-  Cookies.set("plan", "annual")
-});
-
-$('#premium-monthly-eur').click(function () {
-  changePlan("monthly-eur", "annual-eur");
-  Cookies.set("plan", "monthly")
-});
-
-$('#premium-annual-gbp').click(function () {
-  changePlan("annual-gbp", "monthly-gbp");
-  Cookies.set("plan", "annual")
-});
-
-$('#premium-monthly-gbp').click(function () {
-  changePlan("monthly-gbp", "annual-gbp");
-  Cookies.set("plan", "monthly")
-});
-
-$('#premium-annual-usd').click(function () {
-  changePlan("annual-usd", "monthly-usd");
-  Cookies.set("plan", "annual")
-});
-
-$('#premium-monthly-usd').click(function () {
-  changePlan("monthly-usd", "annual-usd");
-  Cookies.set("plan", "monthly")
-});
-
-// Get user country and show appropriate plan
-$(document).ready(function () {
-  var urlParams = new URLSearchParams(window.location.search);
-  var selectedPlan = null;
-  if (Cookies.get("plan"))
-    selectedPlan = Cookies.get("plan")
-  else
-    selectedPlan = urlParams.get('plan');
-
-  $.get("https://ipinfo.io", function (response) {
-    switch (response.country) {
-      case "AS":
-      case "AT":
-      case "BE":
-      case "CY":
-      case "EE":
-      case "FI":
-      case "FR":
-      case "ES":
-      case "DE":
-      case "GR":
-      case "IE":
-      case "IT":
-      case "LV":
-      case "LU":
-      case "MT":
-      case "MC":
-      case "ME":
-      case "NL":
-      case "PT":
-      case "SM":
-      case "SK":
-      case "SI":
-      case "VA":
-        $('#container-loading').hide();
-        if (selectedPlan == "annual") {
-          $('#contents-annual-eur').show();
-          currentPlan = "premium-annual-eur";
-          $('#premium-annual-eur').css("border-color", "#59cbe8");
-        } else {
-          $('#contents-monthly-eur').show();
-          currentPlan = "premium-monthly-eur";
-          $('#premium-monthly-eur').css("border-color", "#59cbe8");
-        }
-        currentCountry = "EU";
-        realCountry = response.country;
-        break;
-      case "GB":
-        $('#container-loading').hide();
-        if (selectedPlan == "annual") {
-          $('#contents-annual-gbp').show();
-          currentPlan = "premium-annual-gbp";
-          $('#premium-annual-gbp').css("border-color", "#59cbe8");
-        } else {
-          $('#contents-monthly-gbp').show();
-          currentPlan = "premium-monthly-gbp";
-          $('#premium-monthly-gbp').css("border-color", "#59cbe8");
-        }
-        currentCountry = "GB";
-      case "US":
-        $('#container-loading').hide();
-        if (selectedPlan == "annual") {
-          $('#contents-annual-usd').show();
-          currentPlan = "premium-annual-usd";
-          $('#premium-annual-usd').css("border-color", "#59cbe8");
-        } else {
-          $('#contents-monthly-usd').show();
-          currentPlan = "premium-monthly-usd";
-          $('#premium-monthly-usd').css("border-color", "#59cbe8");
-        }
-        currentCountry = "US";
-        realCountry = response.country;
-        break;
-      default:
-        $('#container-loading').hide();
-        if (selectedPlan = "annual") {
-          $('#contents-annual-usd').show();
-          currentPlan = "premium-annual-usd";
-          $('#premium-annual-usd').css("border-color", "#59cbe8");
-        } else {
-          $('#contents-monthly-usd').show();
-          currentPlan = "premium-monthly-usd";
-          $('#premium-monthly-usd').css("border-color", "#59cbe8");
-        }
-        currentCountry = "US";
-        realCountry = response.country;
-    }
-  }, "jsonp");
-});
-
-/* Payment information handling */
+// Email login, signup and payment
 // Prevent webflow from handling the form
 var Webflow = Webflow || [];
 Webflow.push(function () {
@@ -422,6 +246,192 @@ Webflow.push(function () {
   });
 });
 
+// Switch from sign up form to log in form and viceversa
+$('.switcher').click(function () {
+  $('#log-in-container').toggle()
+  $('#sign-up-container').toggle()
+})
+
+/* Changing country and plan */
+// Display plan selector for user country
+$('.display-plans-link').click(function () {
+  switch (currentCountry) {
+    case "EU":
+      $('#form-col').hide();
+      $('#plan-group-eur').show();
+      $('.display-plans-link').toggle();
+      $('.display-form-link').toggle();
+      break;
+    case "GB":
+      $('#form-col').hide();
+      $('#plan-group-gbp').show();
+      $('.display-plans-link').toggle();
+      $('.display-form-link').toggle();
+      break;
+    case "US":
+      $('#form-col').hide();
+      $('#plan-group-usd').show();
+      $('.display-plans-link').toggle();
+      $('.display-form-link').toggle();
+      break;
+    default:
+  }
+});
+
+// Display Form when selecting "Continue with ..." button
+$('.display-form-link').click(function () {
+  switch (currentCountry) {
+    case "EU":
+      $('#plan-group-eur').hide();
+      $('#form-col').show();
+      $('.display-form-link').toggle();
+      $('.display-plans-link').toggle();
+      break;
+    case "GB":
+      $('#plan-group-gbp').hide();
+      $('#form-col').show();
+      $('.display-form-link').toggle();
+      $('.display-plans-link').toggle();
+      break;
+    case "US":
+      $('#plan-group-usd').hide();
+      $('#form-col').show();
+      $('.display-form-link').toggle();
+      $('.display-plans-link').toggle();
+      break;
+    default:
+  }
+});
+
+// Change current plan
+$('#premium-annual-eur').click(function () {
+  changePlan("annual-eur", "monthly-eur");
+  Cookies.set("plan", "annual")
+});
+
+$('#premium-monthly-eur').click(function () {
+  changePlan("monthly-eur", "annual-eur");
+  Cookies.set("plan", "monthly")
+});
+
+$('#premium-annual-gbp').click(function () {
+  changePlan("annual-gbp", "monthly-gbp");
+  Cookies.set("plan", "annual")
+});
+
+$('#premium-monthly-gbp').click(function () {
+  changePlan("monthly-gbp", "annual-gbp");
+  Cookies.set("plan", "monthly")
+});
+
+$('#premium-annual-usd').click(function () {
+  changePlan("annual-usd", "monthly-usd");
+  Cookies.set("plan", "annual")
+});
+
+$('#premium-monthly-usd').click(function () {
+  changePlan("monthly-usd", "annual-usd");
+  Cookies.set("plan", "monthly")
+});
+
+// Change country
+$('#country-link-eur').click(function () {
+
+})
+
+/* On load logic */
+// Get user country and show appropriate plan
+$(document).ready(function () {
+  var urlParams = new URLSearchParams(window.location.search);
+  var selectedPlan = null;
+  if (Cookies.get("plan"))
+    selectedPlan = Cookies.get("plan")
+  else
+    selectedPlan = urlParams.get('plan');
+
+  $.get("https://ipinfo.io", function (response) {
+    switch (response.country) {
+      case "AS":
+      case "AT":
+      case "BE":
+      case "CY":
+      case "EE":
+      case "FI":
+      case "FR":
+      case "ES":
+      case "DE":
+      case "GR":
+      case "IE":
+      case "IT":
+      case "LV":
+      case "LU":
+      case "MT":
+      case "MC":
+      case "ME":
+      case "NL":
+      case "PT":
+      case "SM":
+      case "SK":
+      case "SI":
+      case "VA":
+        $('#container-loading').hide();
+        if (selectedPlan == "annual") {
+          $('#contents-annual-eur').show();
+          currentPlan = "premium-annual-eur";
+          $('#premium-annual-eur').css("border-color", "#59cbe8");
+        } else {
+          $('#contents-monthly-eur').show();
+          currentPlan = "premium-monthly-eur";
+          $('#premium-monthly-eur').css("border-color", "#59cbe8");
+        }
+        currentCountry = "EU";
+        realCountry = response.country;
+        break;
+      case "GB":
+        $('#container-loading').hide();
+        if (selectedPlan == "annual") {
+          $('#contents-annual-gbp').show();
+          currentPlan = "premium-annual-gbp";
+          $('#premium-annual-gbp').css("border-color", "#59cbe8");
+        } else {
+          $('#contents-monthly-gbp').show();
+          currentPlan = "premium-monthly-gbp";
+          $('#premium-monthly-gbp').css("border-color", "#59cbe8");
+        }
+        currentCountry = "GB";
+      case "US":
+        $('#container-loading').hide();
+        if (selectedPlan == "annual") {
+          $('#contents-annual-usd').show();
+          currentPlan = "premium-annual-usd";
+          $('#premium-annual-usd').css("border-color", "#59cbe8");
+        } else {
+          $('#contents-monthly-usd').show();
+          currentPlan = "premium-monthly-usd";
+          $('#premium-monthly-usd').css("border-color", "#59cbe8");
+        }
+        currentCountry = "US";
+        realCountry = response.country;
+        break;
+      default:
+        $('#container-loading').hide();
+        if (selectedPlan = "annual") {
+          $('#contents-annual-usd').show();
+          currentPlan = "premium-annual-usd";
+          $('#premium-annual-usd').css("border-color", "#59cbe8");
+        } else {
+          $('#contents-monthly-usd').show();
+          currentPlan = "premium-monthly-usd";
+          $('#premium-monthly-usd').css("border-color", "#59cbe8");
+        }
+        currentCountry = "US";
+        realCountry = response.country;
+    }
+  }, "jsonp");
+});
+
+/* Form validation */
+// Update error marked select inputs when changed
 $('#expiry-month').change(function () {
   $('#error-expiry-date-not-set').hide();
   $('#expiry-month').css('border', 'none')
@@ -434,7 +444,6 @@ $('#expiry-year').change(function () {
   $('#expiry-year').css('background-color', 'rgba(17,50,80,0.1)')
 })
 
-/* Form validation */
 // Treat input on card number field
 $('#card-number').keydown(function (event) {
 
@@ -713,7 +722,7 @@ $(document).ready(() => {
     .catch(err => console.log(err))
 })
 
-// Save a uid and email into a cookie
+// Save a uid, email, provider and display name into a cookie
 function setCookie (uid, email, provider, name) {
   Cookies.set('uid', uid)
   Cookies.set('email', email)
