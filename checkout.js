@@ -372,11 +372,11 @@ $(document).ready(function () {
         $('#container-loading').hide();
         if (selectedPlan == "annual") {
           $('#contents-annual-eur').show();
-          currentPlan = "premium-annual-eur";
+          currentPlan = "premium-annual-eur_test";
           $('#premium-annual-eur').css("border-color", "#59cbe8");
         } else {
           $('#contents-monthly-eur').show();
-          currentPlan = "premium-monthly-eur";
+          currentPlan = "premium-monthly-eur_test";
           $('#premium-monthly-eur').css("border-color", "#59cbe8");
         }
         currentCountry = "EU";
@@ -386,11 +386,11 @@ $(document).ready(function () {
         $('#container-loading').hide();
         if (selectedPlan == "annual") {
           $('#contents-annual-gbp').show();
-          currentPlan = "premium-annual-gbp";
+          currentPlan = "premium-annual-gbp-test";
           $('#premium-annual-gbp').css("border-color", "#59cbe8");
         } else {
           $('#contents-monthly-gbp').show();
-          currentPlan = "premium-monthly-gbp";
+          currentPlan = "premium-monthly-gbp-test";
           $('#premium-monthly-gbp').css("border-color", "#59cbe8");
         }
         currentCountry = "GB";
@@ -398,11 +398,11 @@ $(document).ready(function () {
         $('#container-loading').hide();
         if (selectedPlan == "annual") {
           $('#contents-annual-usd').show();
-          currentPlan = "premium-annual-usd";
+          currentPlan = "premium-annual-usd-test";
           $('#premium-annual-usd').css("border-color", "#59cbe8");
         } else {
           $('#contents-monthly-usd').show();
-          currentPlan = "premium-monthly-usd";
+          currentPlan = "premium-monthly-usd-test";
           $('#premium-monthly-usd').css("border-color", "#59cbe8");
         }
         currentCountry = "US";
@@ -412,11 +412,11 @@ $(document).ready(function () {
         $('#container-loading').hide();
         if (selectedPlan = "annual") {
           $('#contents-annual-usd').show();
-          currentPlan = "premium-annual-usd";
+          currentPlan = "premium-annual-usd-test";
           $('#premium-annual-usd').css("border-color", "#59cbe8");
         } else {
           $('#contents-monthly-usd').show();
-          currentPlan = "premium-monthly-usd";
+          currentPlan = "premium-monthly-usd-test";
           $('#premium-monthly-usd').css("border-color", "#59cbe8");
         }
         currentCountry = "US";
