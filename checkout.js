@@ -372,7 +372,7 @@ $(document).ready(function () {
         $('#container-loading').hide();
         if (selectedPlan == "annual") {
           $('#contents-annual-eur').show();
-          currentPlan = "premium-annual-eur_test";
+          currentPlan = "premium-annual-eur-test";
           $('#premium-annual-eur').css("border-color", "#59cbe8");
         } else {
           $('#contents-monthly-eur').show();
@@ -650,7 +650,7 @@ function changePlan (targetPlan, otherPlan) {
   $('#contents-' + targetPlan).show();
   $('#premium-' + targetPlan).css("border-color", "#59cbe8");
   $('#premium-' + otherPlan).css("border-color", "rgba(17,50,80,.25)");
-  currentPlan = "premium-" + targetPlan;
+  currentPlan = `premium-${targetPlan}-test`;
 }
 
 // Catch firebase redirects and get info into cookies
