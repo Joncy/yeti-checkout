@@ -376,7 +376,7 @@ $(document).ready(function () {
           $('#premium-annual-eur').css("border-color", "#59cbe8");
         } else {
           $('#contents-monthly-eur').show();
-          currentPlan = "premium-monthly-eur_test";
+          currentPlan = "premium-monthly-eur-test";
           $('#premium-monthly-eur').css("border-color", "#59cbe8");
         }
         currentCountry = "EU";
